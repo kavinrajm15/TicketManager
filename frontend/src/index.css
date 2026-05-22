@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #f4f5f7;
+  color: #172b4d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f5f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c7d0;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5e6c84;
+}
+
+/* ── Kanban drag ghost ─────────────────────────────────────── */
+.kanban-card-dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+}
+
+/* ── Tooltip ───────────────────────────────────────────────── */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #172b4d;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* ── Mention highlight ─────────────────────────────────────── */
+.mention {
+  color: #0052cc;
+  font-weight: 600;
+  background: #deebff;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-slideIn {
+  animation: slideInRight 0.25s ease forwards;
+}
+
+/* ── Skeleton loader ───────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #e8eaed 25%, #f8f9fa 50%, #e8eaed 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+
+/* ── Status pill colors (not covered by Tailwind config) ───── */
+.status-todo {
+  background: #f1f2f4;
+  color: #42526e;
+}
+.status-open {
+  background: #deebff;
+  color: #0052cc;
+}
+.status-inprogress {
+  background: #fff0e6;
+  color: #ff8b00;
+}
+.status-inreview {
+  background: #eae6ff;
+  color: #6554c0;
+}
+.status-reopen {
+  background: #ffebe6;
+  color: #de350b;
+}
+.status-done {
+  background: #e3fcef;
+  color: #006644;
+}
+
+/* ── Priority dot colors ───────────────────────────────────── */
+.priority-minimum {
+  color: #97a0af;
+}
+.priority-low {
+  color: #0052cc;
+}
+.priority-high {
+  color: #de350b;
+}
+
+/* ── Chat bubble ───────────────────────────────────────────── */
+.bubble-sent {
+  background: #0052cc;
+  color: #fff;
+  border-radius: 16px 16px 4px 16px;
+}
+.bubble-received {
+  background: #fff;
+  color: #172b4d;
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Custom Scrollbar Helper ───────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e0;
+}
