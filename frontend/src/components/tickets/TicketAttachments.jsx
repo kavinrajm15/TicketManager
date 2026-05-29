@@ -199,7 +199,7 @@ export default function TicketAttachments({
 
   const pendingItems = [
     ...pendingFiles.map(f => ({ isPending: true, type: 'file', file: f, name: f.name, id: `pending-f-${f.name}` })),
-    ...pendingLinks.map(l => ({ isPending: true, type: 'link', url: l.url, name: l.name, id: `pending-l-${l.name}` }))
+    ...pendingLinks.map(l => ({ isPending: true, type: 'link', url: l.url, name: l.name, id: `pending-l-${l.name}-${l.url}`, link: l }))
   ];
 
   const allItems = [...attachments, ...pendingItems];
@@ -234,7 +234,7 @@ export default function TicketAttachments({
               onRemove={() => {
                 if (att.isPending) {
                   if (att.type === 'file') onRemovePendingFile(att.file);
-                  else onRemovePendingLink(att);
+                  else onRemovePendingLink(att.link);
                 } else {
                   onRemove(att._id);
                 }
